@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Searcher</title>
+    <link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<section></section>
+<form id="form-search">
+    <select id="field">
+        <option disabled selected value="">Field...</option>
+        <option>size</option>
+        <option>forks</option>
+        <option>stars</option>
+        <option>followers</option>
+    </select>
+    <select id="operator">
+        <option disabled selected value="">Operator</option>
+        <option><</option>
+        <option>==</option>
+        <option><</option>
+    </select>
+    <input id="textValue" type="text" placeholder="Value..."/>
+    <button id="delete" onclick="del()">Delete</button>
+
+</form>
+<span>
+</span>
+<hr>
+<button id="apply">Apply</button>
+<button id="clear" onclick="clearMethod()">Clear</button>
+<button id="add_rule" onclick="addRule()">Add Rule</button>
+<script>
+    var rules = new Array();
+
+    function addRule() {
+        var tmpRule = {};
+        var field = document.getElementById('field').value;
+        var operator = document.getElementById('operator').value;
+        var textValue = document.getElementById('textValue').value;
+        tmpRule.field = field;
+        tmpRule.operator = operator;
+        tmpRule.textValue = textValue;
+        rules.push(tmpRule);
+        console.log(JSON.stringify(rules));
+        document.getElementById('form-search').reset();
+    }
+
+    function del() {
+        document.getElementById('form-search').reset();
+    }
+
+    function clearMethod() {
+        console.log('clear');
+        rules = [];
+        addRule();
+        document.getElementById('form-search').reset();
+        console.log(JSON.stringify(rules));
+    }
+
+    function applyMethod() {
+        var json = JSON.stringify(rules);
+    }
+</script>
+</body>
+</html>

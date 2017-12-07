@@ -1,0 +1,45 @@
+body {
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+select {
+    border: solid 1px gainsboro;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 5px;
+    padding: 8px;
+}
+
+input {
+    border-radius: 4px;
+    border: solid 1px gainsboro;
+    padding: 8px;
+    width: 80px;
+}
+
+button {
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    color: white;
+}
+
+#delete{
+    background-color: #e32a3a;
+}
+
+#add_rule{
+    background-color: #00ab4a;
+    margin-left: 180px;
+}
+
+#clear{
+    background-color: #f9a731;
+}
+
+#apply{
+    background-color: #09bddd;
+}
