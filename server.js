@@ -1,24 +1,3 @@
-// // Setup basic express server
-// var express = require('express');
-// var app = express();
-// var path = require('path');
-// var server = require('http').createServer(app);
-// var io = require('socket.io')(server);
-// var port = process.env.PORT || 3000;
-//
-// app.set('view engine', 'html');
-// server.listen(port, function () {
-//     console.log('Server listening at port %d', port);
-// });
-//
-// // Routing
-// // app.get('/', function (req, res) {
-// //     console.log("Hi");
-// //     res.sendfile(__dirname, + '/index.html');
-// // });
-// app.use(express.static(path.join(__dirname, 'public')));
-//
-// app.route('/').get(todoList.showHomePage);
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
@@ -145,4 +124,3 @@ io.on('connection', function (socket) {
 http.listen(3000, function () {
     console.log('listening on *:3000');
 });
-
