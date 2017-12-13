@@ -13,6 +13,12 @@ app.use(cookieParser());
 app.use(express.static('public'));
 
 //Routing upload, write and show excel file
+
+app.get('/', function (req, res) {
+    console.log('main url');
+    res.redirect('index.html');
+});
+
 app.post('/upload', function (req, res) {
 
     var form = formidable.IncomingForm();
