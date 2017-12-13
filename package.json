@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": "8.9.1"
+  },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "author": "Ponomarenko A.M.",
   "license": "ISC",
@@ -27,6 +30,15 @@
     "xlsx-style": "^0.8.13"
   },
   "devDependencies": {
-    "nodemon": "^1.12.1"
+    "request": "^2.81.0",
+    "tape": "^4.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/3355844/ChatApp/"
   }
+  //,
+  //  "devDependencies": {
+  //    "nodemon": "^1.12.1"
+  //  }
 }
