@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Numb</title>
+</head>
+<body>
+<h1 id="number"></h1>
+<button onclick="getNumb()">PRESS</button>
+<button>SEND MESS</button>
+<p id="p"></p>
+
+
+</body>
+<script>
+
+    var mapNumb = new Map();
+    var mapTenEl = new Map();
+    var newNumb;
+    var valNumb;
+
+
+    function getNumb() {
+        x();
+        var paragraphs = document.getElementById('p');
+        var text = '';
+        var count = 0;
+
+        for (var i = 0; i <= 50; i++) {
+            newNumb = Math.random() * (52 - 1) + 1;
+            newNumb = Math.round(newNumb);
+            pushToMapNumber(mapNumb, newNumb);
+            document.getElementById('number').innerHTML = newNumb;
+        }
+        mapNumb = sortMapNumbByKey(mapNumb);
+        mapTenEl = getFirstTenHiElements(mapNumb);
+        mapTenEl.forEach(function (val, key, mapTenEl) {
+            count++;
+            text += count + ' Number: ' + key + ' is: ' + val + '</br>';
+        });
+        paragraphs.innerHTML = text;
+    }
+
+    function getFirstTenHiElements(mapNumb) {
+        mapNumb = sortMapByValue(mapNumb);
+        var mapTenElements = new Map();
+        var arrKeys = Array.from(mapNumb.keys());
+
+        for (var i = 0; i < 10; i++) {
+            var tmpKey = arrKeys[i];
+            mapTenElements.set(tmpKey, mapNumb.get(tmpKey));
+        }
+        return mapTenElements;
+    }
+
+    function pushToMapNumber(mapNumb, key) {
+        if (mapNumb.has(key)) {
+            valNumb = mapNumb.get(key);
+            var newValue = valNumb + 1;
+            mapNumb.set(key, newValue);
+        } else {
+            var startValue = 1;
+            mapNumb = mapNumb.set(key, startValue);
+        }
+    }
+
+    function printMapToConsole(mapNumb) {
+        mapNumb.forEach(function (item, key, mapNumb) {
+            console.log('key: ' + key + ' value: ' + item.toString())
+        });
+    }
+
+    function sortMapByValue(mapNumb) {
+        var arrValues = getSortedArrValues(mapNumb);
+        mapNumb = getSortedMapByValue(mapNumb, arrValues);
+        return mapNumb;
+    }
+
+    function getSortedMapByValue(mapNumb, arrValues) {
+        var tmpMap = new Map(mapNumb);
+        var sortedMap = new Map();
+        for (var i = arrValues.length - 1; i >= 0; i--) {
+            var tmpVal = arrValues[i];
+            tmpMap.forEach(function (value, key, tmpMap) {
+                if (value === tmpVal) {
+                    sortedMap.set(key, value);
+                    tmpMap.delete(key);
+                }
+            });
+        }
+        printMapToConsole(tmpMap);
+        return sortedMap;
+    }
+
+    function getSortedArrValues(mapNumb) {
+        var arrValues = new Array();
+        mapNumb.forEach(function (value, key, mapNumb) {
+            arrValues.push(value);
+        });
+        arrValues.sort(sortByDigit);
+        return arrValues
+    }
+
+    function getSortedKeyArr(mapNumb) {
+        var arrKeys = Array.from(mapNumb.keys());
+        var arrKeyInt = new Array();
+        for (let i of arrKeys) {
+            var toInt = parseInt(i);
+            arrKeyInt.push(toInt);
+        }
+        arrKeyInt.sort(sortByDigit);
+        return arrKeyInt;
+    }
+
+
+    function x( ) {
+        var x =0;
+        function callback(err, res) {
+            if(err){
+                x--;
+                return;
+            }
+            x++;
+        }
+        setTimeout(callback, 10);
+        setTimeout(callback, 10, 'error');
+        console.log(x);
+    }
+
+
+    function sortMapNumbByKey(mapNumb) {
+        var sortedMapNumbs = new Map();
+        var arrKeyInt = getSortedKeyArr(mapNumb);
+        for (let key of arrKeyInt) {
+            sortedMapNumbs.set(key, mapNumb.get(key));
+        }
+        return sortedMapNumbs;
+    }
+
+    function sortByDigit(a, b) {
+        return a - b;
+    }
+
+</script>
+</html>
