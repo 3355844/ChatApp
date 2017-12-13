@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WACh</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<img class="logo" src="logo.jpg">
+<section id="upload-file-form">
+    <h1>Excel File parser</h1>
+    <form  action="/upload" method="post" enctype="multipart/form-data">
+        Select EXCEL FILE to upload:
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input class="button" type="submit" value="Upload" name="submit">
+    </form>
+</section>
+
+<section class="chat">
+    <h1>Messages</h1>
+    <ul id="message"></ul>
+    <form class="messageForm file-form" action="">
+        <input id="m" autocomplete="off"/>
+        <button class="button">SEND</button>
+    </form>
+</section>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/main.js"></script>
+<!--<script src="https://code.jquery.com/jquery-1.11.1.js"></script>-->
+<script>
+    $(function () {
+        var socket = io();
+        $('.messageForm').submit(function () {
+            socket.emit('chat message', $('#m').val());
+            $('#m').val('');
+            return false;
+        });
+        socket.on('chat message', function (msg) {
+            $('#message').append($('<li>').text(msg));
+        });
+    });
+</script>
+</body>
+</html>

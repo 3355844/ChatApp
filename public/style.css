@@ -1,0 +1,28 @@
+body {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+ul{
+    list-style-type: none;
+}
+
+#upload-file-form{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.button {
+    margin: 5px;
+    border: solid 1px gray;
+    border-radius: 4px;
+    background-color: greenyellow;
+}
+
+.logo {
+    margin-top: 5px;
+    margin-left: 5px;
+    height: 40px;
+    float: left;
+}
